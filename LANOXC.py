@@ -15,32 +15,7 @@ def clear():
 	for i in range(100):
 		print()
 
-def setConnection():
-	LAN_ADDR = -1
-	ADDR = gethostbyname(gethostname())
-	LAN = ""
-	i = 3
-	while i > 0:
-		if ADDR[0] == ".":
-			i -= 1
-		LAN += ADDR[0]
-		ADDR = ADDR[1:]
-	while LAN_ADDR == -1:
-		try:
-			LAN_ADDR = int(input("Podaj adres LAN serwera: "))
-		except ValueError:
-			clear()
-			banner()
-			print("Adres jest nie poprawny")
-		try:
-			s = socket(AF_INET, SOCK_STREAM)
-			s.connect((LAN+str(LAN_ADDR), 6861))
-		except TimeoutError:
-			clear()
-			banner()
-			print("Timeout")
-	s.close()
-	return (LAN+str(LAN_ADDR), 6861)
-
-clear()
-banner()
+while True:
+	clear()
+	banner()
+	
