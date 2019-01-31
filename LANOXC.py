@@ -121,7 +121,7 @@ while True:
 		print("Oczekiwanie na przeciwnika...")
 		s.listen(1)
 		c, RHOST = s.accept()
-		znak = "OX"[0]
+		znak = "OX"[randint(0,1)]
 		gra.show()
 		while True:
 			if znak == "X":
@@ -132,6 +132,8 @@ while True:
 				gra.setSquare(x)
 				gra.show()
 				c.send((gra.getParamethers()).encode())
+				if gra.checkWin() != "NONE":
+					break
 				print("Róch przeciwnika...")
 				gra.setParamethers(c.recv(4089).decode())
 				gra.show()
@@ -146,6 +148,8 @@ while True:
 				break
 			if c.recv(4096).decode() == "n":
 				break
+			gra.restart()
+			gra.show()
 
 	if inp == "2":
 		LAN = gethostbyname(gethostname())
@@ -167,6 +171,8 @@ while True:
 				gra.setSquare(x)
 				gra.show()
 				s.send((gra.getParamethers()).encode())
+				if gra.checkWin() != "NONE":
+					break
 				print("Róch przeciwnika...")
 				gra.setParamethers(s.recv(4089).decode())
 				gra.show()
@@ -181,3 +187,5 @@ while True:
 				break
 			if s.recv(4096).decode() == "n":
 				break
+			gra.restart()
+			gra.show()
