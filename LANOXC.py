@@ -150,6 +150,8 @@ while True:
 				break
 			gra.restart()
 			gra.show()
+		s.close()
+		c.close()
 
 	if inp == "2":
 		LAN = gethostbyname(gethostname())
@@ -189,3 +191,4 @@ while True:
 				break
 			gra.restart()
 			gra.show()
+		s.close()
